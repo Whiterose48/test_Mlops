@@ -1,0 +1,106 @@
+/* Retro 90s Gaming Styles */
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pixel-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.98;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+
+@keyframes float-pixel {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.retro-pixel {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.retro-text {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.pixel-border {
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%) 4;
+  box-shadow: 
+    4px 4px 0px rgba(0, 0, 0, 0.3),
+    inset 2px 2px 0px rgba(255, 255, 255, 0.3);
+}
+
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+  animation: scanline 8s linear infinite;
+}
+
+.crt-glow {
+  box-shadow: 
+    0 0 20px rgba(147, 51, 234, 0.5),
+    0 0 40px rgba(236, 72, 153, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: crt-flicker 0.15s infinite;
+}
+
+.pixel-shadow {
+  box-shadow: 
+    8px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dithered-bg {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    );
+}
